@@ -62,7 +62,7 @@ class UserPreferenceForm(forms.ModelForm):
             'shopping_auto_sync': _('Shopping list auto sync period'),
             'comments': _('Comments'),
             'left_handed': _('Left-handed mode'),
-            'show_step_ingredients': _('Show step 1 ingredients table')
+            'show_step_ingredients': _('Show step ingredients table')
         }
 
         help_texts = {
@@ -85,7 +85,7 @@ class UserPreferenceForm(forms.ModelForm):
             'mealplan_autoadd_shopping': _('Automatically add meal plan ingredients to shopping list.'),
             'mealplan_autoexclude_onhand': _('Exclude ingredients that are on hand.'),
             'left_handed': _('Will optimize the UI for use with your left hand.'),
-            'show_step_ingredients': _('Show a table of ingredients for each step of the recipe that lists ingredients')
+            'show_step_ingredients': _('Add ingredients table next to recipe steps. Applies at creation time for manually created and URL imported recipes. Individual steps can be overridden in the edit recipe view.')
         }
 
         widgets = {
