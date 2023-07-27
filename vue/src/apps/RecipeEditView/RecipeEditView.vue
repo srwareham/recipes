@@ -824,6 +824,7 @@ export default {
             show_file_create: false,
             step_for_file_create: undefined,
             use_plural: false,
+            user_preferences: undefined,
             additional_visible: false,
             create_food: undefined,
             md_editor_toolbars: {
@@ -871,6 +872,7 @@ export default {
         this.searchRecipes("")
         this.$i18n.locale = window.CUSTOM_LOCALE
         let apiClient = new ApiApiFactory()
+        this.user_preferences = getUserPreference()
         apiClient.retrieveSpace(window.ACTIVE_SPACE_ID).then(r => {
             this.use_plural = r.data.use_plural
         })
@@ -1040,6 +1042,7 @@ export default {
                 show_as_header: false,
                 time_visible: false,
                 ingredients_visible: true,
+                show_ingredients_table: this.user_preferences.show_step_ingredients,
                 instruction_visible: true,
                 step_recipe_visible: false,
                 file_visible: false,
@@ -1077,6 +1080,8 @@ export default {
                 always_use_plural_food: false,
                 original_text: null,
             })
+            // TODO: probably can remove this if find more elegant way to have the initial ingredient's show_ingredients_table set to the user_preference value
+            step.show_ingredients_table = this.user_preferences.show_step_ingredients
             this.sortIngredients(step)
             this.$nextTick(() => document.getElementById(`amount_${this.recipe.steps.indexOf(step)}_${step.ingredients.length - 1}`).select())
         },
