@@ -826,7 +826,6 @@ export default {
             use_plural: false,
             additional_visible: false,
             create_food: undefined,
-            user_preferences: undefined,
             md_editor_toolbars: {
                 bold: true,
                 italic: true,
@@ -870,9 +869,6 @@ export default {
         this.searchKeywords("")
         this.searchFiles("")
         this.searchRecipes("")
-        // TODO: update to actually use this value...
-        this.user_preferences = getUserPreference()
-
         this.$i18n.locale = window.CUSTOM_LOCALE
         let apiClient = new ApiApiFactory()
         apiClient.retrieveSpace(window.ACTIVE_SPACE_ID).then(r => {
