@@ -242,12 +242,12 @@
                                         </button>
                                         <!-- Show "Hide step ingredients if state is currently set to shown"  -->
                                         <button class="dropdown-item" @click="setStepShowIngredientsTable(step, false)"
-                                                v-if="step.show_ingredients_table && step.ingredients_visible">
+                                                v-if="step.show_ingredients_table">
                                             <i class="op-icon fa fa-mavon-eye-slash"></i> {{ $t("hide_step_ingredients") }}
                                         </button>
                                         <!-- Show "Show step ingredients if state is currently set to hidden"  -->
                                         <button class="dropdown-item" @click="setStepShowIngredientsTable(step, true)"
-                                                v-if="! step.show_ingredients_table && !step.ingredients_visible">
+                                                v-if="! step.show_ingredients_table">
                                             <i class="op-icon fa fa-mavon-eye"></i> {{ $t("show_step_ingredients") }}
                                         </button>                                        
                                     </div>
@@ -280,7 +280,6 @@
                                               @click="step.time_visible = true" v-if="!step.time_visible">
                                         <i class="fas fa-plus-circle"></i> {{ $t("Time") }}
                                     </b-button>
-
                                     <b-button pill variant="primary" size="sm" class="ml-1 mb-1 mb-md-0"
                                               @click="step.ingredients_visible = true" v-if="!step.ingredients_visible">
                                         <i class="fas fa-plus-circle"></i> {{ $t("Ingredients") }}
@@ -937,8 +936,9 @@ export default {
                     // set default visibility style for each component of the step
                     this.recipe.steps.forEach((s) => {
                         this.$set(s, "time_visible", s.time !== 0)
-                        // TODO: refactor to combine show_ingredients_table & ingredients_visible into one field?
-                        // Or does keeping them separate make this edit-UI oriented behavior cleaner?
+                        // ingredients_visible determines whether or not the ingredients UI is shown in the edit view
+                        // show_ingredients_table determine whether the ingredients table is shown in the read view
+                        // these are seperate as one might want to add ingredients but not want the step-level view
                         this.$set(s, "ingredients_visible", s.show_ingredients_table && (s.ingredients.length > 0 || this.recipe.steps.length === 1))
                         this.$set(s, "instruction_visible", s.instruction !== "" || this.recipe.steps.length === 1)
                         this.$set(s, "step_recipe_visible", s.step_recipe !== null)
