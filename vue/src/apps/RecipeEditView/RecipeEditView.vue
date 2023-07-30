@@ -1080,8 +1080,6 @@ export default {
                 always_use_plural_food: false,
                 original_text: null,
             })
-            // TODO: probably can remove this if find more elegant way to have the initial ingredient's show_ingredients_table set to the user_preference value
-            step.show_ingredients_table = this.user_preferences.show_step_ingredients
             this.sortIngredients(step)
             this.$nextTick(() => document.getElementById(`amount_${this.recipe.steps.indexOf(step)}_${step.ingredients.length - 1}`).select())
         },
