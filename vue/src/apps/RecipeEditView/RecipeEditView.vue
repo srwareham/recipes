@@ -1099,7 +1099,6 @@ export default {
             this.sortSteps()
         },
         setStepShowIngredientsTable: function (step, show_state) {
-            step.ingredients_visible = show_state
             step.show_ingredients_table = show_state
         },
         moveIngredient: function (step, ingredient, new_index) {
