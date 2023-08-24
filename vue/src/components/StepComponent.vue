@@ -160,12 +160,10 @@ export default {
         return {
             details_visible: true,
             set_time_input: "",
-            user_preferences: undefined,
         }
     },
     mounted() {
         this.set_time_input = moment(this.start_time).add(this.step.time_offset, "minutes").format("yyyy-MM-DDTHH:mm")
-        this.user_preferences = getUserPreference()
     },
     methods: {
         calculateAmount: function (x) {
